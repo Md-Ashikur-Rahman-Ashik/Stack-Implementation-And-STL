@@ -41,5 +41,16 @@ public:
 
 int main()
 {
+    myStack staticObject;
+    staticObject.push(10);
+    staticObject.push(20);
+    staticObject.push(30);
+
+    if (staticObject.empty() == false)
+    {
+        staticObject.pop();
+        cout << staticObject.top() << endl;
+    }
+
     return 0;
 }
