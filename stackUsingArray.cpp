@@ -41,15 +41,32 @@ public:
 
 int main()
 {
-    myStack staticObject;
-    staticObject.push(10);
-    staticObject.push(20);
-    staticObject.push(30);
+    // staticObject.push(10);
+    // staticObject.push(20);
+    // staticObject.push(30);
 
-    if (staticObject.empty() == false)
+    // if (staticObject.empty() == false)
+    // {
+    //     staticObject.pop();
+    //     cout << staticObject.top() << endl;
+    // }
+
+    int stackSize;
+    cin >> stackSize;
+
+    myStack staticObject;
+
+    for (int i = 0; i < stackSize; i++)
     {
-        staticObject.pop();
+        int inputValue;
+        cin >> inputValue;
+        staticObject.push(inputValue);
+    }
+
+    while (!staticObject.empty())
+    {
         cout << staticObject.top() << endl;
+        staticObject.pop();
     }
 
     return 0;
