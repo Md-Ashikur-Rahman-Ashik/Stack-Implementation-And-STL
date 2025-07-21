@@ -21,9 +21,11 @@ class myStack
 public:
     Node *head = NULL;
     Node *tail = NULL;
+    int countSize = 0;
 
     void push(int integerValue)
     {
+        countSize++;
         Node *newNode = new Node(integerValue);
         if (head == NULL)
         {
@@ -34,14 +36,24 @@ public:
         {
             tail->nextPointer = newNode;
             newNode->previousPointer = tail;
+            tail = newNode;
         }
     }
 
     void pop()
     {
+        countSize--;
         Node *deleteNode = tail;
-        tail = tail->previousPointer;
-        tail->nextPointer = NULL;
+        if (head->nextPointer == NULL)
+        {
+            head = NULL;
+            tail = NULL;
+        }
+        else
+        {
+            tail = tail->previousPointer;
+            tail->nextPointer = NULL;
+        }
         delete deleteNode;
     }
 
@@ -52,16 +64,7 @@ public:
 
     int size()
     {
-        Node *tmp = head;
-        int count = 0;
-
-        while (tmp != NULL)
-        {
-            count++;
-            tmp = tmp->nextPointer;
-        }
-
-        return count;
+        return countSize;
     }
 
     bool empty()
@@ -79,7 +82,24 @@ public:
 
 int main()
 {
-    
+    myStack doublyLinkedStack;
+
+    int inputSize;
+    cin >> inputSize;
+
+    for (int i = 0; i < inputSize; i++)
+    {
+        int inputValue;
+        cin >> inputValue;
+
+        doublyLinkedStack.push(inputValue);
+    }
+
+    while (!doublyLinkedStack.empty())
+    {
+        cout << doublyLinkedStack.top() << endl;
+        doublyLinkedStack.pop();
+    }
 
     return 0;
 }
